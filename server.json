@@ -1,0 +1,27 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "archi.den/den_archi_mcp",
+  "title": "den — Korean AEC Standards",
+  "description": "Korean building codes (KDS/KCS/KS) with the clause number attached. Abstains rather than guessing.",
+  "version": "1.1.0",
+  "websiteUrl": "https://den.archi",
+  "repository": {
+    "url": "https://github.com/odd-Innocent/den_archi_mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.den.archi/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer <your den API key>. Request free beta access at https://den.archi",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    }
+  ]
+}
