@@ -1,8 +1,8 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "archi.den/den_archi_mcp",
-  "title": "den — Korean AEC Standards",
-  "description": "Korean building codes (KDS/KCS/KS) with the clause number attached. Abstains rather than guessing.",
+  "title": "den — 한국 건설기준·건축법 (Korean AEC Standards)",
+  "description": "한국 건설기준·건축법 조문 검색 (KDS·KCS·KS·내진설계기준). Korean AEC codes with clause refs. 근거 없으면 기권.",
   "version": "1.1.0",
   "websiteUrl": "https://den.archi",
   "repository": {

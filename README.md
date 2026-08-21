@@ -1,15 +1,20 @@
-# den — 조문까지 붙여 답하는 AEC MCP 서버
+# den — 건설기준·건축법을 조문까지 붙여 답하는 MCP 서버
 
 [![den.archi](https://img.shields.io/badge/den.archi-얼리%20액세스-c8622a)](https://den.archi)
 [![MCP](https://img.shields.io/badge/MCP-remote%20server-333)](https://mcp.den.archi/mcp)
 
-한국 건설기준(KDS·KCS·KS)과 건축 법령을 **조문 번호까지 붙여** 답합니다.
+한국 **건설기준**(KDS·KCS·KS)과 **건축법**·**내진설계기준**을 **조문 번호까지 붙여** 답합니다.
 근거를 찾지 못하면 추측하지 않고, 확실하지 않다고 말합니다.
 
 ```
 mcp.den.archi/mcp        원격 MCP 서버
 den.archi                얼리 액세스 신청 · Claude Desktop 확장 내려받기
 ```
+
+**다루는 것** — 국가건설기준 KDS(설계기준)·KCS(표준시방서)·KS,
+건축법을 비롯한 법령 조문과 별표, 건축물 내진설계기준(KDS 41 17 00),
+주차장법·소방 관련 기술기준, 계약예규.
+조항 커버리지는 부분적입니다 — 보유하지 않은 조문은 보유하지 않았다고 말합니다.
 
 ---
 
@@ -170,8 +175,9 @@ den 서버는 여러분이 무엇을 물었는지 **디스크에 남기지 않�
 ## English
 
 **den** is a remote MCP server for Korean AEC (architecture · engineering · construction)
-standards. It answers with the clause number attached — KDS, KCS, KS, and building law —
-and stays silent when it has no grounds.
+standards — 건설기준 · 건축법 · 내진설계기준. It answers with the clause number attached —
+KDS (design standards), KCS (construction specifications), KS, and building law — and stays
+silent when it has no grounds. Clause coverage is partial; den says so rather than guessing.
 
 - Endpoint: `https://mcp.den.archi/mcp` (Bearer token)
 - Desktop extension: [den.archi](https://den.archi) → `den.mcpb`
