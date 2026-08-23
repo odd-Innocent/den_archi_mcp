@@ -2,6 +2,7 @@
 
 [![den.archi](https://img.shields.io/badge/den.archi-얼리%20액세스-c8622a)](https://den.archi)
 [![MCP](https://img.shields.io/badge/MCP-remote%20server-333)](https://mcp.den.archi/mcp)
+[![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/den-archi)
 
 한국 **건설기준**(KDS·KCS·KS)과 **건축법**·**내진설계기준**을 **조문 번호까지 붙여** 답합니다.
 근거를 찾지 못하면 추측하지 않고, 확실하지 않다고 말합니다.
