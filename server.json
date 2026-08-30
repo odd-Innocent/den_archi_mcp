@@ -3,7 +3,7 @@
   "name": "archi.den/den_archi_mcp",
   "title": "den — Korean AEC knowledge, curated",
   "description": "Curated Korean AEC knowledge — codes, practice, and the reasoning between them.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "websiteUrl": "https://den.archi",
   "repository": {
     "url": "https://github.com/odd-Innocent/den_archi_mcp",
@@ -16,8 +16,8 @@
       "headers": [
         {
           "name": "Authorization",
-          "description": "Bearer <your den API key>. Request free beta access at https://den.archi",
-          "isRequired": true,
+          "description": "Optional. Bearer <your den API key> for direct HTTP access. Most clients should connect over OAuth instead — no key needed. Discovery (initialize, tools/list) works without it.",
+          "isRequired": false,
           "isSecret": true,
           "format": "string"
         }
