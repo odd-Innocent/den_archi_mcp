@@ -186,12 +186,29 @@ den 서버는 여러분이 무엇을 물었는지 **디스크에 남기지 않�
 
 ## English
 
-**den** is a remote MCP server for Korean AEC (architecture · engineering · construction)
-standards — 건설기준 · 건축법 · 내진설계기준. It answers with the clause number attached —
-KDS (design standards), KCS (construction specifications), KS, and building law — and stays
-silent when it has no grounds. Clause coverage is partial; den says so rather than guessing.
+**den** curates Korean AEC (architecture · engineering · construction) knowledge and
+serves it over MCP.
 
-- Endpoint: `https://mcp.den.archi/mcp` (Bearer token)
+It does more than look clauses up. It answers **why** a figure is what it is, **in what
+order** work has to happen, and **how** one thing differs from another. Figures arrive
+with their clause; relationships arrive with their grounds. Where den has no grounds,
+it says so instead of guessing.
+
+**What it covers — codes and law**
+KDS (design standards), KCS (construction specifications), KS, the Building Act and its
+subordinate rules and annexes, seismic design of buildings (KDS 41 17 00), parking and
+fire-safety technical standards, public-contract regulations.
+
+**What it covers — domain knowledge and how it connects**
+Practice rules across structure, construction, MEP and materials; the order operations
+have to follow; the causal chain from performance to defect; the reasoning behind design
+decisions. These sit on **one graph** together with the clauses — which is what lets den
+answer "why is this number what it is", "what comes first", "how does this differ".
+
+Coverage is partial, and den names what it does not hold.
+
+- Endpoint: `https://mcp.den.archi/mcp` — add it as a custom connector and sign in (OAuth).
+  A Bearer key is optional, for clients without connector support.
 - Desktop extension: [den.archi](https://den.archi) → `den.mcpb`
 - Measured lift: **+8.9%p** on 192 national qualification exam items, same model,
   den toggled on/off. Largest gains on advanced tiers (+20.0%p on 기능장 / master craftsman).
