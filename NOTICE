@@ -1,0 +1,27 @@
+den — Korean AEC standards MCP server
+Copyright 2026 Den
+
+This product is licensed under the Apache License, Version 2.0.
+See the LICENSE file for the full terms.
+
+── What this repository contains ──
+
+This repository holds the MCP server manifest (server.json), documentation,
+and response examples for den. It does NOT contain the den knowledge graph,
+the serving code, or any standards text corpus. Those are not published here.
+
+The manifest points at a hosted endpoint (https://mcp.den.archi/mcp) that
+requires authorization. Copying this repository does not grant access to it.
+
+── Trademarks ──
+
+"den", "den.archi", and the den logo are marks of Den. As stated in
+Section 6 of the Apache License 2.0, this license does NOT grant permission
+to use these marks. You may fork and adapt this repository, but please do
+not present the result as den or as an official den distribution.
+
+── Standards and legal texts ──
+
+Excerpts appearing in documentation and examples are from Korean national
+standards (KDS, KCS, KS) and Korean statutes, cited with clause references.
+No foreign standards text (EN, ACI, AISC, ASTM, ISO) is reproduced here.
