@@ -1,9 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "archi.den/den_archi_mcp",
-  "title": "den — AEC 지식 큐레이션 (Korean AEC knowledge, not just codes)",
-  "description": "한국 AEC 지식을 큐레이션해 서빙합니다 — 조문 검색만이 아니라 왜·순서·비교·종류까지. 수치에는 조문이, 관계에는 근거가 붙습니다. 모르면 기권합니다. Curated Korean AEC knowledge: not only KDS·KCS·KS clause lookup, but causal reasoning, sequencing, and comparison.",
-  "version": "1.1.0",
+  "title": "den — Korean AEC knowledge, curated",
+  "description": "Curated Korean AEC knowledge — codes, practice, and the reasoning between them.",
+  "version": "1.2.0",
   "websiteUrl": "https://den.archi",
   "repository": {
     "url": "https://github.com/odd-Innocent/den_archi_mcp",
