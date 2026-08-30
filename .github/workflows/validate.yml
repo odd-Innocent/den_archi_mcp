@@ -60,12 +60,17 @@ jobs:
       - name: links in README resolve
         run: |
           python3 - <<'PY'
-          import re, subprocess, sys
-          urls = sorted(set(re.findall(r'https?://[^\s)\]"<>]+', open("README.md").read())))
+          import json, re, subprocess, sys
+          urls = sorted(set(re.findall(r'https?://[^\s)\]"<>`]+', open("README.md").read())))
           bad = []
+          # the MCP endpoint is checked in the step above, where 401 is the CORRECT answer.
+          # a link checker that calls it "broken" is measuring the wrong thing.
+          endpoint = json.load(open("server.json"))["remotes"][0]["url"].rstrip("/")
           for u in urls:
-              u = u.rstrip('.,')
+              u = u.rstrip('.,`')
               if "badges" in u or "shields.io" in u:
+                  continue
+              if u.rstrip("/") == endpoint:
                   continue
               code = subprocess.run(["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}",
                                      "-L", "--max-time", "25", u],
