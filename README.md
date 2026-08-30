@@ -1,10 +1,17 @@
-# den — 건설기준·건축법을 조문까지 붙여 답하는 MCP 서버
+# den — 한국 AEC 지식 큐레이션 MCP 서버
 
 [![den.archi](https://img.shields.io/badge/den.archi-얼리%20액세스-c8622a)](https://den.archi)
 [![MCP](https://img.shields.io/badge/MCP-remote%20server-333)](https://mcp.den.archi/mcp)
 [![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/den-archi)
 
-한국 **건설기준**(KDS·KCS·KS)과 **건축법**·**내진설계기준**을 **조문 번호까지 붙여** 답합니다.
+한국 AEC(건축·건설) 지식을 **큐레이션해** 서빙합니다.
+
+조문 검색은 하는 일의 **일부**입니다 — 도구 12개 중 조문 조회는 1개이고,
+나머지는 **왜**(인과)·**순서**(공정)·**비교**·**종류**·**도면 검토**를 답합니다.
+지식 그래프에서 조문이 아닌 전문 지식이 **42.9%**를 차지합니다
+(실무 규칙·공정·성능·수식·재료 등 145,636개 · 인과 연결 449,416개).
+
+수치에는 **조문**이, 관계에는 **근거**가 붙습니다.
 근거를 찾지 못하면 추측하지 않고, 확실하지 않다고 말합니다.
 
 ```
