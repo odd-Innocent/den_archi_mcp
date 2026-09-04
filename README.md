@@ -4,7 +4,11 @@
 [![MCP](https://img.shields.io/badge/MCP-remote%20server-333)](https://mcp.den.archi/mcp)
 [![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/den-archi)
 
-한국 AEC(건축·건설) 지식을 **큐레이션해** 서빙합니다.
+**당신의 Agent 에게, AEC 전문 지식을.** — *Curated AEC expertise for your agent.*
+
+den 은 AEC 전문 지식을 큐레이션해 Agent 에 공급하는 MCP 서버입니다. 기준·법령 조문과 실무 규칙·이론·공정·인과가
+한 그래프에 있어, 어디에 쓰여 있는지만이 아니라 **왜 그런지 · 무엇이 먼저인지 · 무엇과 다른지**까지 답합니다.
+근거가 없으면 답하지 않습니다.
 
 조문만 찾아 주지 않습니다 — **왜** 그런지, **어떤 순서**로 해야 하는지,
 무엇과 **어떻게 다른지**까지 답합니다.
@@ -27,6 +31,14 @@ den.archi                얼리 액세스 신청 · Claude Desktop 확장 내려
 그래서 "이 수치가 왜 이런가", "무엇이 먼저인가", "무엇과 어떻게 다른가"에 답합니다.
 
 커버리지는 부분적입니다 — 보유하지 않은 것은 보유하지 않았다고 말합니다.
+
+---
+
+## 조문 검색 MCP 와 무엇이 다른가
+
+조문을 찾아 주는 MCP 는 "어디에 쓰여 있나"를 답합니다. 실무에서 그다음에 오는 물음은
+"왜 그런가 · 무엇이 먼저인가 · 무엇과 다른가"이고, den 은 그것을 같은 그래프에서 답합니다.
+아래 실제 응답 ④·⑤가 그 차이입니다.
 
 ---
 
@@ -81,6 +93,49 @@ relevance: low · confidence 0.237
 
 색온도 분류 자료는 갖고 있지만 "어울리는"은 규범이 정하는 것이 아닙니다.
 den은 이럴 때 **낮은 확신도를 그대로 표시**합니다. 판단은 여러분이 합니다.
+
+**④ 왜 — 인과를 묻는 질문 (`answer_why`)**
+
+> 왜 콘크리트에 양생이 필요한가
+
+```
+relevance: high · intent: physical
+paths:
+  curing --causes--> concrete-strength   (stance: consensus)
+  curing --causes--> durability          (stance: consensus)
+evidence:
+  양생은 수화 지속을 위해 수분·온도를 유지하는 과정이다.        ← KCS 14 20 콘크리트공사 (kr-norm)
+key_facts:
+  "(6) 보온 양생이 끝난 후에는 양생을 계속하여 관리재령에서 예상되는 하중에
+   필요한 강도를 얻을 수 있게 실시하여야 한다."                ← KCS 14 20 40:2024 3.4.2 (kr-norm)
+  SMCS 14 20 10:2018 3.6.1 양생 일반사항 (2)                 ← source_scope: reference
+caveats: scope(climate · epoch · tech_level) 를 경로마다 표시
+```
+
+해외 문헌은 `reference` 로, 국내 규범은 `kr-norm` 으로 갈라 표시됩니다. 섞이지 않습니다.
+
+**⑤ 순서 — 공정을 묻는 질문 (`scenario`)**
+
+> 철근콘크리트 골조 시공 순서
+
+```
+process: 철근콘크리트 골조 1개층 시공 · relevance: high · stages: 6
+  ① 기둥·벽 배근  ∥  ② 기둥·벽 거푸집        (parallel start)
+  ③ 매설물·검측 → ④ 콘크리트 타설 → ⑤ 다짐 → ⑥ 양생
+gaps: 먹매김 · 거푸집 해체 — 아직 정본 노드 없음 (missing_step_node 로 보고)
+note: 그래프의 선후 엣지로 위상정렬한 부분순서. LLM 없음. 없는 단계는 지어내지 않고 갭으로 보고.
+```
+
+**⑥ 왜 질문에서도, 근거가 없으면 답하지 않습니다**
+
+> 왜 방수층 위에 보호몰탈을 까는가
+
+```
+relevance: low · paths: []
+no_path_reason: 그래프에 해당 질문 유형의 유의미한 경로 없음
+```
+
+정답이 있는 물음이지만 den 은 아직 그 인과를 갖고 있지 않습니다. 그럴 때는 이렇게 돌아옵니다.
 
 ---
 
@@ -144,15 +199,17 @@ den은 이럴 때 **낮은 확신도를 그대로 표시**합니다. 판단은 �
 
 | 도구 | 하는 일 |
 |---|---|
-| `k_snippets` | 건설기준·법령의 수치와 조문 원문을 찾습니다 |
-| `answer_why` | 왜 그런 규정인지 인과 경로로 설명합니다 |
-| `evidence_for` | 특정 주장의 근거 조문을 찾습니다 |
-| `compare` | 두 기준·공법을 나란히 놓고 비교합니다 |
-| `path_between` | 두 개념이 어떻게 이어지는지 보여줍니다 |
-| `scenario` | 상황을 주면 적용되는 기준을 모읍니다 |
-| `enumerate` · `traverse` | 목록·인접 개념을 훑습니다 |
+| `answer_why` | 왜 그런 규정·현상인지 인과 경로로 설명합니다 |
+| `scenario` | 공정을 선후 관계로 구성해 순서 있는 단계로 돌려줍니다 |
+| `compare` | 두 공법·개념을 나란히 놓고 차이를 대조합니다 |
+| `enumerate` | 종류·구성요소·분류를 열거합니다 |
 | `site_context` | 지명·좌표를 기후·관할 조건으로 바꿉니다 |
-| `review_plan` | 계획안을 기준에 비추어 검토합니다 |
+| `review_plan` | 평면(실 구성)을 법규에 비추어 검토합니다 |
+| `emotional_palette` | 공간을 순서대로 지날 때의 분위기 전이를 읽습니다 |
+| `path_between` · `traverse` | 두 개념의 연결, 한 개념의 선후 이웃을 보여줍니다 |
+| `k_snippets` | 건설기준·법령의 수치와 조문 원문을 찾습니다 |
+| `evidence_for` | 한 연결(A 가 B 를 유발한다)의 근거를 확인합니다 |
+| `define` | 용어의 뜻을 정의합니다 |
 
 `as_of` 를 주면 그 시점의 기준으로 답합니다. 과거 발주도서·분쟁 검토용입니다.
 
@@ -186,7 +243,9 @@ den 서버는 여러분이 무엇을 물었는지 **디스크에 남기지 않�
 
 ## English
 
-**den** curates Korean AEC (architecture · engineering · construction) knowledge and
+**Curated AEC expertise for your agent.**
+
+**den** curates Korean AEC (architecture · engineering · construction) expertise and
 serves it over MCP.
 
 It does more than look clauses up. It answers **why** a figure is what it is, **in what
