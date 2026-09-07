@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "archi.den/den_archi_mcp",
   "title": "den — Korean AEC knowledge, curated",
-  "description": "Curated Korean AEC expertise for AI agents — KDS·KCS·KS standards, building law, practice, and the reasoning between them. Answers carry their grounds; with no grounds it stays silent.",
+  "description": "Curated Korean AEC expertise for AI agents: KDS·KCS·KS, building law, practice, and the reasoning.",
   "version": "1.2.4",
   "websiteUrl": "https://den.archi",
   "repository": {
