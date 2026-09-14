@@ -1,4 +1,4 @@
-# den — AEC 지식 전문 큐레이팅 시스템 (MCP 서버)
+# den — AEC 전문 지식 큐레이팅 시스템 (MCP 서버)
 
 [![den.archi](https://img.shields.io/badge/den.archi-얼리%20액세스-c8622a)](https://den.archi)
 [![MCP](https://img.shields.io/badge/MCP-remote%20server-333)](https://mcp.den.archi/mcp)
@@ -6,7 +6,7 @@
 
 **당신의 Agent 에게, AEC 전문 지식을.** — *Curated AEC expertise for your agent.*
 
-den 은 AEC 지식 전문 큐레이팅 시스템입니다. 기준·법령 조문과 실무 규칙·이론·공정·인과가
+den 은 AEC 전문 지식 큐레이팅 시스템입니다. 기준·법령 조문과 실무 규칙·이론·공정·인과가
 한 그래프에 있어, 어디에 쓰여 있는지만이 아니라 **왜 그런지 · 무엇이 먼저인지 · 무엇과 다른지**까지 답합니다.
 근거가 없으면 답하지 않습니다.
 
