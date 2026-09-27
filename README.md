@@ -1,282 +1,189 @@
-# den — AEC 전문 지식 큐레이팅 시스템 (MCP 서버)
+# den — AEC 전문 지식 큐레이팅 시스템
 
-[![den.archi](https://img.shields.io/badge/den.archi-얼리%20액세스-c8622a)](https://den.archi)
+[![den.archi](https://img.shields.io/badge/den.archi-사용%20신청-c8622a)](https://den.archi)
 [![MCP](https://img.shields.io/badge/MCP-remote%20server-333)](https://mcp.den.archi/mcp)
 [![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/den-archi)
 
-**당신의 Agent 에게, AEC 전문 지식을.** — *Curated AEC expertise for your agent.*
-
-den 은 AEC 전문 지식 큐레이팅 시스템입니다. 기준·법령 조문과 실무 규칙·이론·공정·인과가
-한 그래프에 있어, 어디에 쓰여 있는지만이 아니라 **왜 그런지 · 무엇이 먼저인지 · 무엇과 다른지**까지 답합니다.
-근거가 없으면 답하지 않습니다.
-
-조문만 찾아 주지 않습니다 — **왜** 그런지, **어떤 순서**로 해야 하는지,
-무엇과 **어떻게 다른지**까지 답합니다.
-
-수치에는 **조문**이, 관계에는 **근거**가 붙습니다.
-근거를 찾지 못하면 추측하지 않고, 확실하지 않다고 말합니다.
+AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다.
 
 ```
-mcp.den.archi/mcp        원격 MCP 서버
-den.archi                얼리 액세스 신청 · Claude Desktop 확장 내려받기
+mcp.den.archi/mcp        원격 MCP 서버 (streamable HTTP)
+den.archi                사용 신청 · Claude Desktop 확장(den.mcpb)
 ```
 
-**다루는 것 — 기준과 법령**
-국가건설기준 KDS(설계기준)·KCS(표준시방서)·KS, 건축법을 비롯한 법령 조문과 별표,
-건축물 내진설계기준(KDS 41 17 00), 주차장법·소방 관련 기술기준, 계약예규.
+## 범위
 
-**다루는 것 — 전공 지식과 그 연결**
-구조·시공·설비·재료의 실무 규칙, 공정의 선후 관계, 성능과 하자의 인과,
-설계 판단의 근거. 이것들이 조문과 **한 그래프 위에** 놓여 있습니다 —
-그래서 "이 수치가 왜 이런가", "무엇이 먼저인가", "무엇과 어떻게 다른가"에 답합니다.
+- 국가건설기준 KDS·KCS, KS, 건축 관련 법령·별표를 제공합니다.
+- 구조·시공·설비·재료·계획 분야의 기준·실무 지식을 제공합니다.
 
-커버리지는 부분적입니다 — 보유하지 않은 것은 보유하지 않았다고 말합니다.
+## 제공 기능
 
----
+| 도구 | 이름 | 설명 |
+|---|---|---|
+| `k_snippets` | 기준·조문 찾기 | 한국 건설기준과 건축 법령의 수치·조문을 출처와 함께 반환합니다. |
+| `evidence_for` | 연결 근거 확인 | 두 개념 사이 한 연결(유발·가능·선행·대비)의 근거를 반환합니다. |
+| `define` | 용어 정의 | 건축·건설 용어 하나의 정의를 반환합니다. |
+| `answer_why` | 인과 설명 | 요건·현상의 원리와 득실을 인과 경로와 근거로 반환합니다. |
+| `scenario` | 공정 순서 구성 | 관련 공정을 선후 관계로 정렬한 작업 단계를 반환합니다. |
+| `compare` | 두 공법 대조 | 두 공법·개념의 공통 단계와 차이를 반환합니다. |
+| `enumerate` | 종류 열거 | 한 개념의 종류·구성요소·분류를 반환합니다. |
+| `site_context` | 대지 조건 확인 | 지명·좌표를 기후·관할 조건으로 변환합니다. |
+| `review_plan` | 평면 법규 검토 | 평면 정보에 적용되는 법규 요건을 점검합니다. |
+| `path_between` | 개념 연결 찾기 | 두 개념 사이의 연결 경로를 반환합니다. |
+| `traverse` | 선후 관계 따라가기 | 한 개념에서 선행·후속 관계를 따라가 반환합니다. |
 
-## 조문 검색 MCP 와 무엇이 다른가
+- `k_snippets` · `answer_why` · `evidence_for` · `define` 은 `as_of`(YYYY-MM-DD)를 받아 그 시점에 유효한 기준으로 조회합니다.
+- 도구는 적재된 자료만 조회하며 외부 서비스를 호출하지 않습니다.
 
-조문을 찾아 주는 MCP 는 "어디에 쓰여 있나"를 답합니다. 실무에서 그다음에 오는 물음은
-"왜 그런가 · 무엇이 먼저인가 · 무엇과 다른가"이고, den 은 그것을 같은 그래프에서 답합니다.
-아래 실제 응답 ④·⑤가 그 차이입니다.
+## 근거 표기
 
----
+- 수치·요건에 출처를 표기합니다.
+- 출처는 국내 규범 조문·해외 문헌·den 자체 분석으로 구분합니다.
+- 응답의 `source_scope` 값이 구분을 나타냅니다: `kr-norm`(국내 규범) · `reference`(해외 문헌) · `den-internal`(den 자체 분석).
 
-## 왜 필요한가
+## 한계
 
-AI에게 "옥내소화전 방수구 높이"를 물으면 그럴듯한 숫자가 돌아옵니다.
-맞을 때도 있고 틀릴 때도 있는데, **어느 쪽인지 알 방법이 없습니다.**
+- 보유 범위 밖 질의에는 응답하지 않습니다.
+- 커버리지는 부분적이며, 미보유 항목은 응답에 명시합니다.
+- 응답은 법률·설계 자문이 아닙니다.
+- 계약 문서(지체상금 특약·설계변경 절차·하자담보 기간) 질의에서는 den 자체 분석이 법령 조문보다 앞 순위로 반환됩니다. 기록: [den.archi/notes](https://den.archi/notes/)
+- 도면·수식 이미지는 입력으로 받지 않습니다. 평면 검토는 도면에서 읽어낸 실·인접·개구부·동선 정보를 입력으로 받습니다.
+- 기준 개정은 개정 확인 뒤 반영까지 시차가 있습니다.
 
-실무에서 이건 답을 못 얻은 것보다 나쁩니다. 확인하러 기준을 다시 펴야 하니까요.
+## 연결 방법
 
-den은 답에 출처를 붙입니다. 붙일 근거가 없으면 답하지 않습니다.
+사용 신청이 승인된 계정으로 진행합니다. 사용 신청은 [den.archi](https://den.archi) 에서 합니다.
 
----
+1. mcp.den.archi 에 로그인합니다.
+2. 대시보드에서 커넥터 주소를 복사합니다.
+3. Claude·ChatGPT 의 커스텀 커넥터에 주소를 등록합니다. 인증 방식은 OAuth 입니다.
 
-## 실제 응답
+**Claude Desktop 확장**
 
-아래는 편집 없이 그대로 옮긴 실제 응답입니다.
+- [den.archi](https://den.archi) 에서 `den.mcpb` 를 내려받아 설치합니다.
+- 설치 창에 대시보드에서 발급한 API 키를 입력합니다. 키는 OS 키체인에 저장됩니다.
 
-**① 기준이 있는 질문**
+**그 밖의 MCP 클라이언트(키 방식)**
 
-> 옥내소화전 방수구 설치 높이
-
-```
-relevance: high · confidence 0.998
-근거: 옥내소화전설비의 화재안전기술기준(NFTC 102) · KCS 31 80 10
-
-  옥내소화전은 노즐 선단 방수압력 0.17 MPa 이상 0.7 MPa 이하,
-  방수량 130 L/min 이상을 확보해야 한다. 방수압력이 0.7 MPa를 초과하면
-  호스접결구 인입측에 감압장치를 설치하고, 방수구는 바닥에서 높이 1.5 m 이하,
-  건축물 각 부분으로부터 수평거리 25 m 이하로 배치한다.
-```
-
-**② 법령이 정한 수치**
-
-> 지하주차장 직각주차 최소 주차구획 크기
-
-```
-relevance: high · confidence 0.968
-근거: 주차장법 시행규칙 제3조
-
-  평행주차 외(직각 등)는 경형 2.0m×3.6m, 일반형 2.5m×5.0m,
-  확장형 2.6m×5.2m, 장애인전용 3.3m×5.0m, 이륜차 1.0m×2.3m다.
-```
-
-**③ 정성적 판단 — den이 자신 없다고 말하는 경우**
-
-> 카페 인테리어에 어울리는 조명 색온도 추천
-
-```
-relevance: low · confidence 0.237
-```
-
-색온도 분류 자료는 갖고 있지만 "어울리는"은 규범이 정하는 것이 아닙니다.
-den은 이럴 때 **낮은 확신도를 그대로 표시**합니다. 판단은 여러분이 합니다.
-
-**④ 왜 — 인과를 묻는 질문 (`answer_why`)**
-
-> 왜 콘크리트에 양생이 필요한가
-
-```
-relevance: high · intent: physical
-paths:
-  curing --causes--> concrete-strength   (stance: consensus)
-  curing --causes--> durability          (stance: consensus)
-evidence:
-  양생은 수화 지속을 위해 수분·온도를 유지하는 과정이다.        ← KCS 14 20 콘크리트공사 (kr-norm)
-key_facts:
-  "(6) 보온 양생이 끝난 후에는 양생을 계속하여 관리재령에서 예상되는 하중에
-   필요한 강도를 얻을 수 있게 실시하여야 한다."                ← KCS 14 20 40:2024 3.4.2 (kr-norm)
-  SMCS 14 20 10:2018 3.6.1 양생 일반사항 (2)                 ← source_scope: reference
-caveats: scope(climate · epoch · tech_level) 를 경로마다 표시
-```
-
-해외 문헌은 `reference` 로, 국내 규범은 `kr-norm` 으로 갈라 표시됩니다. 섞이지 않습니다.
-
-**⑤ 순서 — 공정을 묻는 질문 (`scenario`)**
-
-> 철근콘크리트 골조 시공 순서
-
-```
-process: 철근콘크리트 골조 1개층 시공 · relevance: high · stages: 6
-  ① 기둥·벽 배근  ∥  ② 기둥·벽 거푸집        (parallel start)
-  ③ 매설물·검측 → ④ 콘크리트 타설 → ⑤ 다짐 → ⑥ 양생
-gaps: 먹매김 · 거푸집 해체 — 아직 정본 노드 없음 (missing_step_node 로 보고)
-note: 그래프의 선후 엣지로 위상정렬한 부분순서. LLM 없음. 없는 단계는 지어내지 않고 갭으로 보고.
-```
-
-**⑥ 왜 질문에서도, 근거가 없으면 답하지 않습니다**
-
-> 왜 방수층 위에 보호몰탈을 까는가
-
-```
-relevance: low · paths: []
-no_path_reason: 그래프에 해당 질문 유형의 유의미한 경로 없음
-```
-
-정답이 있는 물음이지만 den 은 아직 그 인과를 갖고 있지 않습니다. 그럴 때는 이렇게 돌아옵니다.
-
----
-
-## 실무 글
-
-- [공정 순서를 물은 뒤 근거와 빠진 조건을 확인하는 법](docs/practice/check-work-sequence.md) — 순서를 받은 뒤 이유·출처·조건을 확인하는 세 걸음
-
-## 측정
-
-같은 모델, 같은 문항, den만 붙였다 뗐다 하며 비교했습니다.
-
-| | 정답률 |
-|---|---|
-| den 없이 | 166/192 |
-| den 붙임 | 183/192 |
-| **차이** | **+8.9%p** |
-
-급수별로는 **기능장 +20.0%p · 관리사 +15.0%p · 기사 +6.8%p · 산업기사 ±0**.
-쉬운 문제는 AI도 맞힙니다. 전문 심화로 갈수록 벌어집니다.
-
-> 공개 기출 문제라 양쪽 모두 암기분이 섞여 있습니다.
-> 절대 점수는 실제 실력보다 높으니 **차이만** 보십시오.
-
-다른 모델(sol)에서도 같은 방향으로 +7.3%p 였습니다.
-
----
-
-## 못 하는 것
-
-신뢰가 제품이라 여기부터 적습니다.
-
-- **건축계획·실내건축** — 정성적 판단 영역은 약합니다. 위 ③ 이 그 예입니다.
-- **계약 문서 해석** — 지체상금 면제·설계변경·하자담보는 현재 회수하지 못합니다(내부 골든 3문항 실패, 공개 추적 중).
-- **도면·수식 이미지** — 텍스트 기준만 다룹니다.
-- **최신 개정 즉시 반영** — 개정 감시는 돌지만 반영에 시차가 있습니다.
-
-범위 밖에서는 답을 만들어내는 대신 확신도를 낮춥니다.
-
----
-
-## 설치
-
-**Claude Desktop**
-
-1. [den.archi](https://den.archi) 에서 `den.mcpb` 를 내려받아 실행합니다.
-2. 얼리 액세스 승인 후 대시보드에서 발급한 API 키를 입력합니다.
-3. 키는 OS 키체인에 저장되고, 번들된 로컬 프록시가 요청 헤더에 붙여 보냅니다.
-
-**그 밖의 MCP 클라이언트**
+커스텀 커넥터 인증을 지원하지 않는 클라이언트는 대시보드에서 발급한 API 키를 요청 헤더에 넣습니다.
 
 ```json
 {
   "mcpServers": {
     "den": {
       "url": "https://mcp.den.archi/mcp",
-      "headers": { "Authorization": "Bearer <your-key>" }
+      "headers": { "Authorization": "Bearer <den-api-key>" }
     }
   }
 }
 ```
 
----
+- 도구 목록 조회(`initialize` · `tools/list`)는 키 없이 가능합니다.
+- 도구 호출에는 승인된 계정의 인증이 필요합니다.
 
-## 도구
+## 기록 범위
 
-| 도구 | 하는 일 |
-|---|---|
-| `answer_why` | 왜 그런 규정·현상인지 인과 경로로 설명합니다 |
-| `scenario` | 공정을 선후 관계로 구성해 순서 있는 단계로 돌려줍니다 |
-| `compare` | 두 공법·개념을 나란히 놓고 차이를 대조합니다 |
-| `enumerate` | 종류·구성요소·분류를 열거합니다 |
-| `site_context` | 지명·좌표를 기후·관할 조건으로 바꿉니다 |
-| `review_plan` | 평면(실 구성)을 법규에 비추어 검토합니다 |
-| `emotional_palette` | 공간을 순서대로 지날 때의 분위기 전이를 읽습니다 |
-| `path_between` · `traverse` | 두 개념의 연결, 한 개념의 선후 이웃을 보여줍니다 |
-| `k_snippets` | 건설기준·법령의 수치와 조문 원문을 찾습니다 |
-| `evidence_for` | 한 연결(A 가 B 를 유발한다)의 근거를 확인합니다 |
-| `define` | 용어의 뜻을 정의합니다 |
+- 질의 원문은 저장하지 않습니다.
+- 질의는 지문(해시)과 형태 특징으로만 기록합니다.
+- 호출 기록의 항목은 [약관 및 프라이버시](https://mcp.den.archi/terms)에 있습니다.
 
-`as_of` 를 주면 그 시점의 기준으로 답합니다. 과거 발주도서·분쟁 검토용입니다.
+## 참고 문서
 
----
-
-## 질의 내용은 저장하지 않습니다
-
-den 서버는 여러분이 무엇을 물었는지 **디스크에 남기지 않습니다.**
-남는 것은 복원 불가능한 지문과 형태 정보뿐입니다.
-
-```json
-{"query_fp": "a8edb8c424a5c84b",
- "query_shape": {"len_bucket": "s", "has_number": true, "lang": "ko"},
- "tool": "k_snippets", "relevance": "high"}
-```
-
-질의 원문·인자는 기록되지 않으며, 이 규칙은 서버 불변식으로 검사됩니다.
-설계 도면이나 미공개 프로젝트 내용을 물어도 서버에 문장이 남지 않습니다.
-
----
-
-## 현재 상태
-
-**베타 · 무료.** 얼리 액세스는 [den.archi](https://den.archi) 에서 신청하시면
-검토 후 승인해 드립니다.
-
-틀린 답을 만나면 알려 주십시오. den은 틀린 답을 **사례로 기록해서**
-그 조문을 다시 저작합니다 — 저희가 가장 중요하게 보는 지표입니다.
+- [공정 순서 답변의 근거·조건 확인 절차](docs/practice/check-work-sequence.md)
+- [응답 기록](examples/real_responses.md)
+- [알려진 한계 기록](https://den.archi/notes/)
 
 ---
 
 ## English
 
-**Curated AEC expertise for your agent.**
+# AEC Expert Knowledge Curation System
 
-**den** curates Korean AEC (architecture · engineering · construction) expertise and
-serves it over MCP.
+den is a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources.
 
-It does more than look clauses up. It answers **why** a figure is what it is, **in what
-order** work has to happen, and **how** one thing differs from another. Figures arrive
-with their clause; relationships arrive with their grounds. Where den has no grounds,
-it says so instead of guessing.
+```
+mcp.den.archi/mcp        remote MCP server (streamable HTTP)
+den.archi                access requests · Claude Desktop extension (den.mcpb)
+```
 
-**What it covers — codes and law**
-KDS (design standards), KCS (construction specifications), KS, the Building Act and its
-subordinate rules and annexes, seismic design of buildings (KDS 41 17 00), parking and
-fire-safety technical standards, public-contract regulations.
+### Scope
 
-**What it covers — domain knowledge and how it connects**
-Practice rules across structure, construction, MEP and materials; the order operations
-have to follow; the causal chain from performance to defect; the reasoning behind design
-decisions. These sit on **one graph** together with the clauses — which is what lets den
-answer "why is this number what it is", "what comes first", "how does this differ".
+- Covers the Korean Design Standards (KDS), Korean Construction Specifications (KCS), Korean Industrial Standards (KS), and building-related statutes with their annexed tables.
+- Covers codes, standards and practice knowledge in structure, construction, building services, materials and planning.
 
-Coverage is partial, and den names what it does not hold.
+### Functions
 
-- Endpoint: `https://mcp.den.archi/mcp` — add it as a custom connector and sign in (OAuth).
-  A Bearer key is optional, for clients without connector support.
-- Desktop extension: [den.archi](https://den.archi) → `den.mcpb`
-- Measured lift: **+8.9%p** on 192 national qualification exam items, same model,
-  den toggled on/off. Largest gains on advanced tiers (+20.0%p on 기능장 / master craftsman).
-  *Public past exams — both sides include memorized content, so read the delta, not the absolute.*
-- **Query text is never written to disk.** Only a non-reversible fingerprint and shape metadata.
-- Weak on qualitative design judgment and contract-document interpretation. Stated up front.
+| Tool | Name | Description |
+|---|---|---|
+| `k_snippets` | Find Standard Clauses | Returns values and clauses from Korean building codes and statutes, with their sources. |
+| `evidence_for` | Check Evidence For Link | Returns the evidence for one relation between two concepts. |
+| `define` | Define Term | Returns the definition of a single AEC term. |
+| `answer_why` | Explain Why | Returns the causal paths behind a requirement or phenomenon, with evidence. |
+| `scenario` | Build Work Sequence | Returns work steps ordered by their precedence relations. |
+| `compare` | Compare Two Methods | Returns the shared steps and differences of two methods or concepts. |
+| `enumerate` | Enumerate Kinds | Returns the kinds, components or classes of a concept. |
+| `site_context` | Resolve Site Context | Converts a place name or coordinates into climate and jurisdiction conditions. |
+| `review_plan` | Review Floor Plan | Checks the statutory requirements that apply to a floor plan description. |
+| `path_between` | Find Path Between Concepts | Returns the relation path between two concepts. |
+| `traverse` | Follow Order Relations | Returns the preceding and following relations of a concept. |
 
-Beta, free. Request access at [den.archi](https://den.archi).
+- `k_snippets`, `answer_why`, `evidence_for` and `define` accept `as_of` (YYYY-MM-DD) and query the standards in force on that date.
+- The tools query loaded data only and call no external service.
+
+### Sources
+
+- Each value and requirement is marked with its source.
+- Sources are classified as Korean normative clauses, foreign references, or den's own analysis.
+- The `source_scope` field in each response records the class: `kr-norm` (Korean norm), `reference` (foreign reference), `den-internal` (den's own analysis).
+
+### Limitations
+
+- Queries outside the curated scope receive no response.
+- Coverage is partial, and items outside the curated scope are identified in the response.
+- Responses are not legal or design advice.
+- For contract documents (liquidated damages clauses, design change procedures, defect liability periods), den's own analysis is returned ahead of the statutory clauses. Record: [den.archi/notes](https://den.archi/notes/)
+- Drawings and formula images are not accepted as input. The floor plan review takes rooms, adjacency, openings and circulation read from the drawing.
+- Revised standards are applied in den after a revision check, with a time lag.
+
+### Connection
+
+Requires an approved account. Access requests are made at [den.archi](https://den.archi).
+
+1. Sign in at mcp.den.archi.
+2. Copy the connector address from the dashboard.
+3. Register the address as a custom connector in Claude or ChatGPT, with OAuth as the authentication method.
+
+**Claude Desktop extension**
+
+- Download `den.mcpb` from [den.archi](https://den.archi) and install it.
+- Enter the API key issued on the dashboard in the installation dialog. The key is stored in the operating system keychain.
+
+**Other MCP clients (key-based)**
+
+Clients without custom connector authentication send an API key issued on the dashboard in the request header.
+
+```json
+{
+  "mcpServers": {
+    "den": {
+      "url": "https://mcp.den.archi/mcp",
+      "headers": { "Authorization": "Bearer <den-api-key>" }
+    }
+  }
+}
+```
+
+- Discovery (`initialize`, `tools/list`) is available without a key.
+- Tool calls require authentication with an approved account.
+
+### Records
+
+- Query text is not stored.
+- Queries are recorded only as a fingerprint (hash) and shape features.
+- The recorded fields are listed on the [Terms and Privacy](https://mcp.den.archi/terms) page.
+
+### Reference documents
+
+- [Procedure for checking sources and conditions in a work sequence answer](docs/practice/check-work-sequence.md)
+- [Response records](examples/real_responses.md)
+- [Known limitations](https://den.archi/notes/)
