@@ -31,7 +31,7 @@ AI 에이전트가 반환한 공정 순서 목록을 검토하는 절차입니�
 
 ---
 
-den 은 AEC 전문 지식 큐레이팅 시스템입니다. AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다. 커버리지는 부분적이며, 미보유 항목은 응답에 명시합니다. 응답은 법률·설계 자문이 아닙니다. https://den.archi/?from=practice_article
+Den은 AEC 전문 지식 큐레이팅 시스템입니다. AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다. 보유 범위는 부분적이며, 미보유 항목은 응답에 명시합니다. 응답은 법률·설계 자문이 아닙니다. https://den.archi/?from=practice_article
 
 ---
 
@@ -70,4 +70,4 @@ This procedure reviews a work sequence list returned by an AI agent. The format 
 
 ---
 
-den is the AEC Expert Knowledge Curation System, a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources. Coverage is partial, and items outside the curated scope are identified in the response. Responses are not legal or design advice. https://den.archi/?from=practice_article
+Den is the AEC Expert Knowledge Curation System, a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources. Coverage is partial, and items outside the curated scope are identified in the response. Responses are not legal or design advice. https://den.archi/?from=practice_article

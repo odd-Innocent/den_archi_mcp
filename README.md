@@ -1,6 +1,6 @@
-# den — AEC 전문 지식 큐레이팅 시스템
+# Den | AEC 전문 지식 큐레이팅 시스템
 
-[![den.archi](https://img.shields.io/badge/den.archi-사용%20신청-c8622a)](https://den.archi)
+[![den.archi](https://img.shields.io/badge/den.archi-시작하기-c8622a)](https://den.archi)
 [![MCP](https://img.shields.io/badge/MCP-remote%20server-333)](https://mcp.den.archi/mcp)
 [![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/den-archi)
 
@@ -8,7 +8,7 @@ AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 �
 
 ```
 mcp.den.archi/mcp        원격 MCP 서버 (streamable HTTP)
-den.archi                사용 신청 · Claude Desktop 확장(den.mcpb)
+den.archi                소개 · Claude Desktop 확장(den.mcpb)
 ```
 
 ## 범위
@@ -38,21 +38,21 @@ den.archi                사용 신청 · Claude Desktop 확장(den.mcpb)
 ## 근거 표기
 
 - 수치·요건에 출처를 표기합니다.
-- 출처는 국내 규범 조문·해외 문헌·den 자체 분석으로 구분합니다.
-- 응답의 `source_scope` 값이 구분을 나타냅니다: `kr-norm`(국내 규범) · `reference`(해외 문헌) · `den-internal`(den 자체 분석).
+- 출처는 국내 규범 조문, 해외 문헌, Den 자체 분석으로 구분합니다.
+- 응답의 `source_scope` 필드가 구분을 나타냅니다: `kr-norm`(국내 규범) · `reference`(해외 문헌) · `den-internal`(Den 자체 분석).
 
 ## 한계
 
-- 보유 범위 밖 질의에는 응답하지 않습니다.
-- 커버리지는 부분적이며, 미보유 항목은 응답에 명시합니다.
+- 보유 범위 밖 질문에는 답하지 않고 미보유로 표시합니다.
+- 보유 범위는 부분적이며, 미보유 항목은 응답에 명시합니다.
 - 응답은 법률·설계 자문이 아닙니다.
-- 계약 문서(지체상금 특약·설계변경 절차·하자담보 기간) 질의에서는 den 자체 분석이 법령 조문보다 앞 순위로 반환됩니다.
+- 계약 문서(지체상금 특약·설계변경 절차·하자담보 기간) 질의에서는 Den 자체 분석이 법령 조문보다 앞 순위로 반환됩니다.
 - 도면·수식 이미지는 입력으로 받지 않습니다. 평면 검토는 도면에서 읽어낸 실·인접·개구부·동선 정보를 입력으로 받습니다.
 - 기준 개정은 개정 확인 뒤 반영까지 시차가 있습니다.
 
 ## 연결 방법
 
-사용 신청이 승인된 계정으로 진행합니다. 사용 신청은 [den.archi](https://den.archi) 에서 합니다.
+가입한 계정으로 진행합니다.
 
 1. mcp.den.archi에서 가입합니다.
 2. Claude와 ChatGPT의 커스텀 커넥터에 커넥터 주소를 등록합니다. 인증 방식은 OAuth입니다.
@@ -65,7 +65,7 @@ den.archi                사용 신청 · Claude Desktop 확장(den.mcpb)
 
 **그 밖의 MCP 클라이언트(키 방식)**
 
-커스텀 커넥터 인증을 지원하지 않는 클라이언트는 대시보드에서 발급한 API 키를 요청 헤더에 넣습니다.
+커스텀 커넥터 인증을 지원하지 않는 클라이언트는 대시보드에서 발급한 API 키를 요청 헤더로 전달합니다.
 
 ```json
 {
@@ -79,13 +79,13 @@ den.archi                사용 신청 · Claude Desktop 확장(den.mcpb)
 ```
 
 - 도구 목록 조회(`initialize` · `tools/list`)는 키 없이 가능합니다.
-- 도구 호출에는 승인된 계정의 인증이 필요합니다.
+- 도구 호출에는 가입한 계정의 인증이 필요합니다.
 
 ## 기록 범위
 
 - 질의 원문은 저장하지 않습니다.
 - 질의는 지문(해시)과 형태 특징으로만 기록합니다.
-- 호출 기록의 항목은 [약관 및 프라이버시](https://mcp.den.archi/terms)에 있습니다.
+- 호출 기록의 항목은 [이용약관 · 개인정보 처리방침](https://mcp.den.archi/terms)에 있습니다.
 
 ## 참고 문서
 
@@ -98,11 +98,11 @@ den.archi                사용 신청 · Claude Desktop 확장(den.mcpb)
 
 # AEC Expert Knowledge Curation System
 
-den is a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources.
+Den is a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources.
 
 ```
 mcp.den.archi/mcp        remote MCP server (streamable HTTP)
-den.archi                access requests · Claude Desktop extension (den.mcpb)
+den.archi                overview · Claude Desktop extension (den.mcpb)
 ```
 
 ### Scope
@@ -132,21 +132,21 @@ den.archi                access requests · Claude Desktop extension (den.mcpb)
 ### Sources
 
 - Each value and requirement is marked with its source.
-- Sources are classified as Korean normative clauses, foreign references, or den's own analysis.
-- The `source_scope` field in each response records the class: `kr-norm` (Korean norm), `reference` (foreign reference), `den-internal` (den's own analysis).
+- Sources are classified as Korean normative clauses, foreign references, or Den's own analysis.
+- The `source_scope` field in each response records the class: `kr-norm` (Korean norm), `reference` (foreign reference), `den-internal` (Den's own analysis).
 
 ### Limitations
 
-- Queries outside the curated scope receive no response.
+- Questions outside the curated scope are not answered and are marked as outside the scope.
 - Coverage is partial, and items outside the curated scope are identified in the response.
 - Responses are not legal or design advice.
-- For contract documents (liquidated damages clauses, design change procedures, defect liability periods), den's own analysis is returned ahead of the statutory clauses.
+- For contract documents (liquidated damages clauses, design change procedures, defect liability periods), Den's own analysis is returned ahead of the statutory clauses.
 - Drawings and formula images are not accepted as input. The floor plan review takes rooms, adjacency, openings and circulation read from the drawing.
-- Revised standards are applied in den after a revision check, with a time lag.
+- Revised standards are applied in Den after a revision check, with a time lag.
 
 ### Connection
 
-Requires an approved account. Access requests are made at [den.archi](https://den.archi).
+Requires a Den account.
 
 1. Create an account at mcp.den.archi.
 2. Register the connector address as a custom connector in Claude or ChatGPT. The authentication method is OAuth.
@@ -173,7 +173,7 @@ Clients without custom connector authentication send an API key issued on the da
 ```
 
 - Discovery (`initialize`, `tools/list`) is available without a key.
-- Tool calls require authentication with an approved account.
+- Tool calls require authentication with a Den account.
 
 ### Records
 
