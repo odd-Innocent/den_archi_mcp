@@ -46,7 +46,7 @@ den.archi                사용 신청 · Claude Desktop 확장(den.mcpb)
 - 보유 범위 밖 질의에는 응답하지 않습니다.
 - 커버리지는 부분적이며, 미보유 항목은 응답에 명시합니다.
 - 응답은 법률·설계 자문이 아닙니다.
-- 계약 문서(지체상금 특약·설계변경 절차·하자담보 기간) 질의에서는 den 자체 분석이 법령 조문보다 앞 순위로 반환됩니다. 기록: [den.archi/notes](https://den.archi/notes/)
+- 계약 문서(지체상금 특약·설계변경 절차·하자담보 기간) 질의에서는 den 자체 분석이 법령 조문보다 앞 순위로 반환됩니다.
 - 도면·수식 이미지는 입력으로 받지 않습니다. 평면 검토는 도면에서 읽어낸 실·인접·개구부·동선 정보를 입력으로 받습니다.
 - 기준 개정은 개정 확인 뒤 반영까지 시차가 있습니다.
 
@@ -54,9 +54,9 @@ den.archi                사용 신청 · Claude Desktop 확장(den.mcpb)
 
 사용 신청이 승인된 계정으로 진행합니다. 사용 신청은 [den.archi](https://den.archi) 에서 합니다.
 
-1. mcp.den.archi 에 로그인합니다.
-2. 대시보드에서 커넥터 주소를 복사합니다.
-3. Claude·ChatGPT 의 커스텀 커넥터에 주소를 등록합니다. 인증 방식은 OAuth 입니다.
+1. mcp.den.archi에서 가입합니다.
+2. Claude와 ChatGPT의 커스텀 커넥터에 커넥터 주소를 등록합니다. 인증 방식은 OAuth입니다.
+3. 인증 창에서 로그인합니다.
 
 **Claude Desktop 확장**
 
@@ -91,7 +91,6 @@ den.archi                사용 신청 · Claude Desktop 확장(den.mcpb)
 
 - [공정 순서 답변의 근거·조건 확인 절차](docs/practice/check-work-sequence.md)
 - [응답 기록](examples/real_responses.md)
-- [알려진 한계 기록](https://den.archi/notes/)
 
 ---
 
@@ -141,7 +140,7 @@ den.archi                access requests · Claude Desktop extension (den.mcpb)
 - Queries outside the curated scope receive no response.
 - Coverage is partial, and items outside the curated scope are identified in the response.
 - Responses are not legal or design advice.
-- For contract documents (liquidated damages clauses, design change procedures, defect liability periods), den's own analysis is returned ahead of the statutory clauses. Record: [den.archi/notes](https://den.archi/notes/)
+- For contract documents (liquidated damages clauses, design change procedures, defect liability periods), den's own analysis is returned ahead of the statutory clauses.
 - Drawings and formula images are not accepted as input. The floor plan review takes rooms, adjacency, openings and circulation read from the drawing.
 - Revised standards are applied in den after a revision check, with a time lag.
 
@@ -149,9 +148,9 @@ den.archi                access requests · Claude Desktop extension (den.mcpb)
 
 Requires an approved account. Access requests are made at [den.archi](https://den.archi).
 
-1. Sign in at mcp.den.archi.
-2. Copy the connector address from the dashboard.
-3. Register the address as a custom connector in Claude or ChatGPT, with OAuth as the authentication method.
+1. Create an account at mcp.den.archi.
+2. Register the connector address as a custom connector in Claude or ChatGPT. The authentication method is OAuth.
+3. Sign in on the authorization screen.
 
 **Claude Desktop extension**
 
@@ -186,4 +185,3 @@ Clients without custom connector authentication send an API key issued on the da
 
 - [Procedure for checking sources and conditions in a work sequence answer](docs/practice/check-work-sequence.md)
 - [Response records](examples/real_responses.md)
-- [Known limitations](https://den.archi/notes/)
