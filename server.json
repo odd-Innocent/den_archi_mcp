@@ -1,9 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "archi.den/den_archi_mcp",
-  "title": "den — AEC Expert Knowledge Curation System",
+  "title": "Den | AEC Expert Knowledge Curation System",
   "description": "AEC Expert Knowledge Curation System. Korean building codes, statutes and practice, with sources.",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "websiteUrl": "https://den.archi",
   "repository": {
     "url": "https://github.com/odd-Innocent/den_archi_mcp",
@@ -16,7 +16,7 @@
       "headers": [
         {
           "name": "Authorization",
-          "description": "Optional. Bearer <den API key> for direct HTTP access. Clients with custom connector support use OAuth instead. Discovery (initialize, tools/list) is available without a key.",
+          "description": "Optional. Bearer <Den API key> for direct HTTP access. Clients with custom connector support use OAuth instead. Discovery (initialize, tools/list) is available without a key.",
           "isRequired": false,
           "isSecret": true,
           "format": "string"
