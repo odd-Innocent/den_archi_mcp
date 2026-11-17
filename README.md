@@ -7,14 +7,15 @@
 AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다.
 
 ```
-mcp.den.archi/mcp        원격 MCP 서버 (streamable HTTP)
-den.archi                소개 · Claude Desktop 확장(den.mcpb)
+https://mcp.den.archi/mcp    커넥터 주소(원격 MCP 서버, streamable HTTP)
+den.archi                    소개와 연결 안내
+den.archi/den.mcpb           Claude Desktop 확장
 ```
 
 ## 범위
 
-- 국가건설기준 KDS·KCS, KS, 건축 관련 법령·별표를 제공합니다.
-- 구조·시공·설비·재료·계획 분야의 기준·실무 지식을 제공합니다.
+- 국가건설기준 KDS·KCS, KS, 건축 관련 법령과 별표
+- 구조·시공·설비·재료·계획 분야의 기준과 실무 지식
 
 ## 제공 기능
 
@@ -32,13 +33,12 @@ den.archi                소개 · Claude Desktop 확장(den.mcpb)
 | `path_between` | 개념 연결 찾기 | 두 개념 사이의 연결 경로를 반환합니다. |
 | `traverse` | 선후 관계 따라가기 | 한 개념에서 선행·후속 관계를 따라가 반환합니다. |
 
-- `k_snippets` · `answer_why` · `evidence_for` · `define` 은 `as_of`(YYYY-MM-DD)를 받아 그 시점에 유효한 기준으로 조회합니다.
+- `k_snippets`, `answer_why`, `evidence_for`, `define`은 `as_of`(YYYY-MM-DD)를 받아 그 시점에 유효한 기준으로 조회합니다.
 - 도구는 적재된 자료만 조회하며 외부 서비스를 호출하지 않습니다.
 
 ## 근거 표기
 
-- 수치·요건에 출처를 표기합니다.
-- 출처는 국내 규범 조문, 해외 문헌, Den 자체 분석으로 구분합니다.
+- 수치와 요건마다 출처를 표기하고, 출처는 국내 규범 조문, 해외 문헌, Den 자체 분석으로 구분합니다.
 - 응답의 `source_scope` 필드가 구분을 나타냅니다: `kr-norm`(국내 규범) · `reference`(해외 문헌) · `den-internal`(Den 자체 분석).
 
 ## 한계
@@ -47,7 +47,7 @@ den.archi                소개 · Claude Desktop 확장(den.mcpb)
 - 보유 범위는 부분적이며, 미보유 항목은 응답에 명시합니다.
 - 응답은 법률·설계 자문이 아닙니다.
 - 계약 문서(지체상금 특약·설계변경 절차·하자담보 기간) 질의에서는 Den 자체 분석이 법령 조문보다 앞 순위로 반환됩니다.
-- 도면·수식 이미지는 입력으로 받지 않습니다. 평면 검토는 도면에서 읽어낸 실·인접·개구부·동선 정보를 입력으로 받습니다.
+- 도면·수식 이미지는 입력으로 받지 않습니다. 평면 검토는 도면에서 읽어낸 실, 인접, 개구부, 동선 정보를 입력으로 받습니다.
 - 기준 개정은 개정 확인 뒤 반영까지 시차가 있습니다.
 
 ## 연결 방법
@@ -58,14 +58,16 @@ den.archi                소개 · Claude Desktop 확장(den.mcpb)
 2. Claude와 ChatGPT의 커스텀 커넥터에 커넥터 주소를 등록합니다. 인증 방식은 OAuth입니다.
 3. 인증 창에서 로그인합니다.
 
+커넥터 주소는 `https://mcp.den.archi/mcp`입니다.
+
 **Claude Desktop 확장**
 
-- [den.archi](https://den.archi) 에서 `den.mcpb` 를 내려받아 설치합니다.
-- 설치 창에 대시보드에서 발급한 API 키를 입력합니다. 키는 OS 키체인에 저장됩니다.
+- [den.mcpb](https://den.archi/den.mcpb)를 내려받아 설치합니다.
+- mcp.den.archi에 로그인한 뒤 「키 · 연결된 앱」 화면에서 발급한 API 키를 설치 창에 입력합니다. 키는 OS 키체인에 저장됩니다.
 
 **그 밖의 MCP 클라이언트(키 방식)**
 
-커스텀 커넥터 인증을 지원하지 않는 클라이언트는 대시보드에서 발급한 API 키를 요청 헤더로 전달합니다.
+커스텀 커넥터 인증을 지원하지 않는 클라이언트는 mcp.den.archi의 「키 · 연결된 앱」 화면에서 발급한 API 키를 요청 헤더로 전달합니다.
 
 ```json
 {
@@ -90,7 +92,7 @@ den.archi                소개 · Claude Desktop 확장(den.mcpb)
 ## 참고 문서
 
 - [공정 순서 답변의 근거·조건 확인 절차](docs/practice/check-work-sequence.md)
-- [응답 기록](examples/real_responses.md)
+- [응답 예시](examples/real_responses.md)
 
 ---
 
@@ -101,8 +103,9 @@ den.archi                소개 · Claude Desktop 확장(den.mcpb)
 Den is a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources.
 
 ```
-mcp.den.archi/mcp        remote MCP server (streamable HTTP)
-den.archi                overview · Claude Desktop extension (den.mcpb)
+https://mcp.den.archi/mcp    connector address (remote MCP server, streamable HTTP)
+den.archi                    overview and connection guide
+den.archi/den.mcpb           Claude Desktop extension
 ```
 
 ### Scope
@@ -152,14 +155,16 @@ Requires a Den account.
 2. Register the connector address as a custom connector in Claude or ChatGPT. The authentication method is OAuth.
 3. Sign in on the authorization screen.
 
+The connector address is `https://mcp.den.archi/mcp`.
+
 **Claude Desktop extension**
 
-- Download `den.mcpb` from [den.archi](https://den.archi) and install it.
-- Enter the API key issued on the dashboard in the installation dialog. The key is stored in the operating system keychain.
+- Download [den.mcpb](https://den.archi/den.mcpb) and install it.
+- In the installation dialog, enter an API key issued on the Keys and Connected Apps screen (키 · 연결된 앱) at mcp.den.archi. The key is stored in the operating system keychain.
 
 **Other MCP clients (key-based)**
 
-Clients without custom connector authentication send an API key issued on the dashboard in the request header.
+Clients without custom connector authentication send an API key in the request header. The key is issued on the Keys and Connected Apps screen (키 · 연결된 앱) at mcp.den.archi.
 
 ```json
 {
@@ -184,4 +189,4 @@ Clients without custom connector authentication send an API key issued on the da
 ### Reference documents
 
 - [Procedure for checking sources and conditions in a work sequence answer](docs/practice/check-work-sequence.md)
-- [Response records](examples/real_responses.md)
+- [Response examples](examples/real_responses.md)

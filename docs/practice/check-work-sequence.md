@@ -19,7 +19,7 @@ AI 에이전트가 반환한 공정 순서 목록을 검토하는 절차입니�
 ## 3. 순서 변경 조건 확인
 
 - 순서 목록은 일반적인 경우를 기준으로 작성됩니다.
-- 기온·부재 종류·배합·공기 등 현장 조건에 따른 순서 변경 여부는 별도로 질의합니다.
+- 기온, 부재 종류, 배합, 공기 등 현장 조건에 따른 순서 변경 여부는 별도로 질의합니다.
 
 > “이 순서가 달라지는 조건을 알려 주십시오.”
 
@@ -31,7 +31,7 @@ AI 에이전트가 반환한 공정 순서 목록을 검토하는 절차입니�
 
 ---
 
-Den은 AEC 전문 지식 큐레이팅 시스템입니다. AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다. 보유 범위는 부분적이며, 미보유 항목은 응답에 명시합니다. 응답은 법률·설계 자문이 아닙니다. https://den.archi/?from=practice_article
+Den은 AEC 전문 지식 큐레이팅 시스템입니다. AI 에이전트에 AEC 규범·실무 지식을 출처와 함께 제공하는 서버입니다. 보유 범위는 부분적이며, 미보유 항목은 응답에 명시합니다. 응답은 법률·설계 자문이 아닙니다. [den.archi](https://den.archi/?from=practice_article)
 
 ---
 
@@ -70,4 +70,4 @@ This procedure reviews a work sequence list returned by an AI agent. The format 
 
 ---
 
-Den is the AEC Expert Knowledge Curation System, a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources. Coverage is partial, and items outside the curated scope are identified in the response. Responses are not legal or design advice. https://den.archi/?from=practice_article
+Den is the AEC Expert Knowledge Curation System, a server that provides AI agents with Korean AEC codes, standards and practice knowledge, together with their sources. Coverage is partial, and items outside the curated scope are identified in the response. Responses are not legal or design advice. [den.archi](https://den.archi/?from=practice_article)

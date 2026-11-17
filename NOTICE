@@ -6,19 +6,20 @@ See the LICENSE file for the full terms.
 
 ── What this repository contains ──
 
-This repository holds the MCP server manifest (server.json), documentation,
-and response examples for den. It does NOT contain the den knowledge graph,
-the serving code, or any standards text corpus. Those are not published here.
+This repository contains the MCP server manifest (server.json), documentation,
+response examples, and a stdio bridge (bridge.py, Dockerfile) for Den. It does
+not include the Den knowledge graph, the serving code, or any standards text
+corpus. Those are not published here.
 
 The manifest points at a hosted endpoint (https://mcp.den.archi/mcp) that
 requires authorization. Copying this repository does not grant access to it.
 
 ── Trademarks ──
 
-"den", "den.archi", and the den logo are marks of Den. As stated in
-Section 6 of the Apache License 2.0, this license does NOT grant permission
-to use these marks. You may fork and adapt this repository, but please do
-not present the result as den or as an official den distribution.
+"Den", "den.archi", and the Den logo are marks of Den. As stated in
+Section 6 of the Apache License 2.0, this license does not grant permission
+to use these marks. This repository may be forked and adapted, but the
+result should not be presented as Den or as an official Den distribution.
 
 ── Standards and legal texts ──
 
