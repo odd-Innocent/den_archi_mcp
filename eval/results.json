@@ -1,0 +1,34 @@
+{
+ "measured_at": "2026-11-17T18:50:01+0900",
+ "n": 192,
+ "configs": {
+  "luna_solo": {
+   "model": "A",
+   "with_den": false,
+   "correct": 167,
+   "n": 192,
+   "pct": 87.0
+  },
+  "luna_den": {
+   "model": "A",
+   "with_den": true,
+   "correct": 183,
+   "n": 192,
+   "pct": 95.3
+  },
+  "sol_solo": {
+   "model": "B",
+   "with_den": false,
+   "correct": 166,
+   "n": 192,
+   "pct": 86.5
+  },
+  "sol_den": {
+   "model": "B",
+   "with_den": true,
+   "correct": 184,
+   "n": 192,
+   "pct": 95.8
+  }
+ }
+}
